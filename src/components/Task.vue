@@ -4,7 +4,7 @@
     :class="[task.reminder ? 'reminder' : '', 'task']"
     >
         <h3>{{task.text}}
-            <i @click="$emit('delete-task', task.id)" class="fas fa-times"></i>
+            <i @click="deleteTask(task.id), $emit('delete-task', task.id)" class="fas fa-times"></i>
         </h3>
         <p>{{task.day}}</p>
     </div>
@@ -15,11 +15,15 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
     name:'Task',
     props: {
         task:Object,
     },
+    methods:{
+      ...mapActions(["deleteTask"])
+    }
 }
 
 </script>
